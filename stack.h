@@ -5,17 +5,17 @@
 #ifndef TESTES_STACK_H
 #define TESTES_STACK_H
 #include "estado.h"
-//Declarar o nodo da lista-ligada
-struct Node {
-    struct estado;
-    struct Node* next;
-};
+#define MAXBUFFER 1024
 
-struct Node* top;
+typedef struct stack
+{
+    ESTADO e;
+    struct stack *anterior;
+}*STACK;
 
-void push(ESTADO e);
-int isEmpty();
-int peek();
-void pop();
-void display();
+void iniciastack(ESTADO e, STACK *stack);
+int cheia(STACK *stack);
+void push(ESTADO e, STACK *stack);
+void pop(ESTADO e, STACK *stack);
+
 #endif //TESTES_STACK_H

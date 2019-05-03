@@ -11,7 +11,8 @@
 ESTADO interpretar(ESTADO e, char *linha) {
 
     int n,nivel;
-    char buffer[MAXBUFFER];
+
+    char tabuleiro[MAXBUFFER];
     char cmd[MAXBUFFER];
     char peca[MAXBUFFER];
     char l,c, modo,p;
@@ -29,15 +30,15 @@ ESTADO interpretar(ESTADO e, char *linha) {
             printf("\n");
             break;
         case 'L':
-            sscanf(linha,"%s %s",cmd,buffer);
-            e=cmd_ler_fich(e,buffer);
+            sscanf(linha,"%s",cmd);
+            e=cmd_ler_fich(e);
             printf("\n");
             printa(e);
             printf("\n");
             break;
         case 'E':
-            sscanf(linha,"%s %s",cmd,buffer);
-            cmd_escrever_fich(e,buffer);
+            sscanf(linha,"%s %s",cmd,tabuleiro);
+            cmd_escrever_fich(e);
             break;
         case 'J':
             sscanf(linha,"%c %c %c",cmd,&l,&c);
@@ -58,6 +59,7 @@ ESTADO interpretar(ESTADO e, char *linha) {
             printf("\n");
             printa(e);
             printf("\n");
+            iniciastack(e,*stack);
             break;
         case 'S': //jodadas validas "."
             cmd_pos_valida(e);

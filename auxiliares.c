@@ -20,6 +20,8 @@ int jog_valida_cima(ESTADO e, int l, int c){
     }
     return  0;
 }
+
+
 int jog_valida_baixo(ESTADO e, int l, int c){
     l += 1;
     if(l==7 || e.grelha[l-1][c-1] == e.peca || e.grelha[l-1][c-1]==VAZIA) return 0;
@@ -33,6 +35,8 @@ int jog_valida_baixo(ESTADO e, int l, int c){
     }
     return  0;
 }
+
+
 int jog_valida_direita(ESTADO e, int l, int c){
     c += 1;
     if(c==7 ||  e.grelha[l-1][c-1] == e.peca|| e.grelha[l-1][c-1] ==VAZIA) return 0;
@@ -46,6 +50,8 @@ int jog_valida_direita(ESTADO e, int l, int c){
     }
     return 0;
 }
+
+
 int jog_valida_esquerda(ESTADO e, int l, int c){
     c -= 1;
     if(c==0 || e.grelha[l-1][c-1] == e.peca || e.grelha[l-1][c-1]==VAZIA) return 0;
@@ -59,6 +65,8 @@ int jog_valida_esquerda(ESTADO e, int l, int c){
     }
     return 0;
 }
+
+
 int jog_valida_cima_dir(ESTADO e, int l, int c){
     l -= 1;
     c += 1;
@@ -76,6 +84,8 @@ int jog_valida_cima_dir(ESTADO e, int l, int c){
     }
     return 0;
 }
+
+
 int jog_valida_cima_esq(ESTADO e, int l, int c){
     l -= 1;
     c -= 1;
@@ -94,6 +104,8 @@ int jog_valida_cima_esq(ESTADO e, int l, int c){
     }
     return 0;
 }
+
+
 int jog_valida_baixo_dir(ESTADO e, int l, int c){
     l += 1;
     c += 1;
@@ -112,6 +124,8 @@ int jog_valida_baixo_dir(ESTADO e, int l, int c){
     }
     return 0;
 }
+
+
 int jog_valida_baixo_esq(ESTADO e, int l, int c){
     l += 1;
     c -= 1;
@@ -130,6 +144,8 @@ int jog_valida_baixo_esq(ESTADO e, int l, int c){
     }
     return 0;
 }
+
+
 int pode_jogar(ESTADO e , int l, int c){
     if (jog_valida_cima(e,l,c)) return 1;
     if (jog_valida_baixo(e,l,c)) return 1;
@@ -141,6 +157,8 @@ int pode_jogar(ESTADO e , int l, int c){
     if (jog_valida_baixo_esq(e,l,c)) return 1;
     return 0;
 }
+
+
 ESTADO substitui(ESTADO e, int l, int c){
     int lt;
     int ct;
@@ -282,6 +300,8 @@ ESTADO substitui(ESTADO e, int l, int c){
     }
     return e;
 }
+
+
 char conta_peca(ESTADO e){
     int x=0;
     int o=0;
@@ -301,6 +321,8 @@ char conta_peca(ESTADO e){
     if(x == 0 || o == 0) printf("o jogo acabou, venceu: %c \n", v);
     return v;
 }
+
+
 void jogadas(ESTADO e){
     int pj=0;
     int i, j;

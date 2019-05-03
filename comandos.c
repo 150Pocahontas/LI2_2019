@@ -35,14 +35,13 @@ ESTADO cmd_novo_jogo(ESTADO e, char jog ){
     return e;
 }
 
-ESTADO cmd_ler_fich(ESTADO e, char buffer[]){
+ESTADO cmd_ler_fich(ESTADO e){
 
     FILE *tabuleiro;
     char modo, p;
     char linha[MAXBUFFER];
 
-    strcat(buffer,".txt");
-    tabuleiro = fopen(buffer,"r");
+    tabuleiro = fopen("CLionProjects/Projeto_LI2/tabuleiro.txt","r");
 
     if(tabuleiro==NULL){
         printf("Ficheiro não existe\n");
@@ -85,13 +84,14 @@ ESTADO cmd_ler_fich(ESTADO e, char buffer[]){
     fclose(tabuleiro);
     return e;
 }
-void cmd_escrever_fich(ESTADO e, char buffer[]){
+
+
+void cmd_escrever_fich(ESTADO e){
 
     FILE *tabuleiro;
     char modo, p;
 
-    strcat(buffer,".txt");
-    tabuleiro = fopen(buffer,"w");
+    tabuleiro = fopen("CLionProjects/Projeto_LI2/tabuleiro.txt","r");
 
     if (e.modo == 0) modo = 'M';
     else modo = 'A';
@@ -112,6 +112,8 @@ void cmd_escrever_fich(ESTADO e, char buffer[]){
     }
     fclose(tabuleiro);
 }
+
+
 ESTADO cmd_jogar(ESTADO e, char l, char c){
     int li = l - 48;
     int ci = c - 48;
@@ -127,6 +129,8 @@ ESTADO cmd_jogar(ESTADO e, char l, char c){
     }else printf("O jogo ainda não começou\n\n");
     return e;
 }
+
+
 void cmd_pos_valida(ESTADO e) {
     int i,j;
     printf("  1 2 3 4 5 6 7 8\n");
@@ -143,6 +147,8 @@ void cmd_pos_valida(ESTADO e) {
         putchar('\n');
     }
 }
+
+
 void cmd_sugestao(ESTADO e) {
     int i, j;
     int ci = 3, cj = 3;
