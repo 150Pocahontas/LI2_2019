@@ -9,8 +9,10 @@
 #define MAXBUFFER 1024
 #include "auxiliares.h"
 #include "comandos.h"
+#include "stack.h"
 
-ESTADO cmd_novo_jogo(ESTADO e, char jog ){
+
+ESTADO cmd_novo_jogo(ESTADO e, char jog,STACK *s ){
 
     for(int i=0;i<8;i++){
         for(int j=0;j<8;j++){
@@ -30,13 +32,14 @@ ESTADO cmd_novo_jogo(ESTADO e, char jog ){
     else if(jog == 'O') {
         e.peca = VALOR_O;
     }else e.peca = VAZIA;
-
+    iniciastack(s);
+    push(e,s);
     //e.grelha[2][2] = VALOR_X;
     return e;
 }
 
 
-ESTADO cmd_ler_fich(ESTADO e){
+ESTADO cmd_ler_fich(ESTADO e,STACK *s){
 
     FILE *tabuleiro;
     char modo, p;
@@ -83,6 +86,8 @@ ESTADO cmd_ler_fich(ESTADO e){
         }
     }
     fclose(tabuleiro);
+    iniciastack(s);
+    push(e,s);
     return e;
 }
 
@@ -115,7 +120,7 @@ void cmd_escrever_fich(ESTADO e){
 }
 
 
-ESTADO cmd_jogar(ESTADO e, char l, char c){
+ESTADO cmd_jogar(ESTADO e, char l, char c,STACK *s){
     int li = l - 48;
     int ci = c - 48;
 
@@ -128,6 +133,7 @@ ESTADO cmd_jogar(ESTADO e, char l, char c){
             jogadas(e);
         }else printf("Jogada Invaĺida\n\n");
     }else printf("O jogo ainda não começou\n\n");
+    push(e,s);
     return e;
 }
 

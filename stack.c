@@ -7,7 +7,7 @@
 #include <stdio.h>
 
 
-void iniciastack(ESTADO e, STACK *stack){
+void iniciastack(STACK *stack){
     *stack = NULL;
 }
 int vazia(STACK *stack){
@@ -15,7 +15,7 @@ int vazia(STACK *stack){
 }
 
 void push(ESTADO e, STACK *stack){
-    STACK novastack = (STACK) malloc(sizeof(struct node));
+    STACK novastack = (STACK) malloc(sizeof(struct stack));
     novastack -> e = e;
     novastack -> anterior = *stack;
     *stack = novastack;

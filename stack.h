@@ -13,9 +13,9 @@ typedef struct stack
     struct stack *anterior;
 }*STACK;
 
-void iniciastack(ESTADO e, STACK *stack);
-int cheia(STACK *stack);
+void iniciastack(STACK *stack);
+int vazia(STACK *stack);
 void push(ESTADO e, STACK *stack);
-void pop(ESTADO e, STACK *stack);
+ESTADO pop(ESTADO e, STACK *stack);
 
 #endif //TESTES_STACK_H
