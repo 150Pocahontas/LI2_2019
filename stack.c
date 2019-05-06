@@ -10,7 +10,7 @@
 void iniciastack(ESTADO e, STACK *stack){
     *stack = NULL;
 }
-int cheia(STACK *stack){
+int vazia(STACK *stack){
     return (*stack == NULL || (*stack) -> anterior == NULL);
 }
 
@@ -21,7 +21,7 @@ void push(ESTADO e, STACK *stack){
     *stack = novastack;
 }
 
-void pop(ESTADO e, STACK *stack){
+ESTADO pop(ESTADO e, STACK *stack){
     STACK aux = *stack;
     aux = aux -> anterior;
     e = aux -> e;

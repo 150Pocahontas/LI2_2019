@@ -35,6 +35,7 @@ ESTADO cmd_novo_jogo(ESTADO e, char jog ){
     return e;
 }
 
+
 ESTADO cmd_ler_fich(ESTADO e){
 
     FILE *tabuleiro;
@@ -43,7 +44,7 @@ ESTADO cmd_ler_fich(ESTADO e){
 
     tabuleiro = fopen("CLionProjects/Projeto_LI2/tabuleiro.txt","r");
 
-    if(tabuleiro==NULL){
+    if(tabuleiro == NULL){
         printf("Ficheiro não existe\n");
         return e;
     }
@@ -52,9 +53,9 @@ ESTADO cmd_ler_fich(ESTADO e){
     if (modo == 'M') e.modo = 0;
     else e.modo = 1;
 
-    if(p== 'X') e.peca = VALOR_X;
-    if(p=='O') e.peca = VALOR_O;
-    if(p=='-') e.peca = VAZIA;
+    if(p == 'X') e.peca = VALOR_X;
+    if(p == 'O') e.peca = VALOR_O;
+    if(p == '-') e.peca = VAZIA;
 
     fseek(tabuleiro,1,SEEK_CUR);
 
@@ -66,17 +67,17 @@ ESTADO cmd_ler_fich(ESTADO e){
                 e.grelha[i][c]=VALOR_X;
                 c++;
             }
-            else if(linha[j]=='O'){
+            else if(linha[j] =='O'){
 
-            e.grelha[i][c]=VALOR_O;
+            e.grelha[i][c] = VALOR_O;
             c++;
             }
             else if(linha[j]=='-') {
-                e.grelha[i][c]=VAZIA;
+                e.grelha[i][c] = VAZIA;
                 c++;
             }
             else if(linha[j]=='.') {
-                e.grelha[i][c]= VAZIA;
+                e.grelha[i][c] = VAZIA;
                 c++;
             }
         }

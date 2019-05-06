@@ -9,12 +9,12 @@
 //posso jogar a baixo? verifica para cima
 int jog_valida_cima(ESTADO e, int l, int c){
     l -= 1;
-    if( l==0 || e.grelha[l-1][c-1] == e.peca || e.grelha[l-1][c-1]==VAZIA) return 0;
+    if( l == 0 || e.grelha[l-1][c-1] == e.peca || e.grelha[l-1][c-1] == VAZIA) return 0;
     else{
         l -=1;
         while(l != 0){
-            if(e.grelha[l-1][c-1]==VAZIA) return 0;
-            else if(e.grelha[l-1][c-1]==e.peca) return 1;
+            if(e.grelha[l-1][c-1] == VAZIA) return 0;
+            else if(e.grelha[l-1][c-1] == e.peca) return 1;
             else l--;
         }
     }
@@ -24,7 +24,7 @@ int jog_valida_cima(ESTADO e, int l, int c){
 
 int jog_valida_baixo(ESTADO e, int l, int c){
     l += 1;
-    if(l==7 || e.grelha[l-1][c-1] == e.peca || e.grelha[l-1][c-1]==VAZIA) return 0;
+    if(l == 7 || e.grelha[l-1][c-1] == e.peca || e.grelha[l-1][c-1] == VAZIA) return 0;
     else{
         l +=1;
         while(l <= 8){
@@ -39,12 +39,12 @@ int jog_valida_baixo(ESTADO e, int l, int c){
 
 int jog_valida_direita(ESTADO e, int l, int c){
     c += 1;
-    if(c==7 ||  e.grelha[l-1][c-1] == e.peca|| e.grelha[l-1][c-1] ==VAZIA) return 0;
+    if(c == 7 ||  e.grelha[l-1][c-1] == e.peca || e.grelha[l-1][c-1] == VAZIA) return 0;
     else{
         c += 1;
         while(c <= 8){
-            if(e.grelha[l-1][c-1]==VAZIA) return 0;
-            else if(e.grelha[l-1][c-1]==e.peca) return 1;
+            if(e.grelha[l-1][c-1] == VAZIA) return 0;
+            else if(e.grelha[l-1][c-1] == e.peca) return 1;
             else c++;
         }
     }
@@ -54,12 +54,12 @@ int jog_valida_direita(ESTADO e, int l, int c){
 
 int jog_valida_esquerda(ESTADO e, int l, int c){
     c -= 1;
-    if(c==0 || e.grelha[l-1][c-1] == e.peca || e.grelha[l-1][c-1]==VAZIA) return 0;
+    if(c == 0 || e.grelha[l-1][c-1] == e.peca || e.grelha[l-1][c-1] == VAZIA) return 0;
     else{
         c -= 1;
         while(c!= 0){
-            if(e.grelha[l-1][c-1]==VAZIA) return 0;
-            else if(e.grelha[l-1][c-1]==e.peca) return 1;
+            if(e.grelha[l-1][c-1] == VAZIA) return 0;
+            else if(e.grelha[l-1][c-1] == e.peca) return 1;
             else c--;
         }
     }
@@ -70,13 +70,13 @@ int jog_valida_esquerda(ESTADO e, int l, int c){
 int jog_valida_cima_dir(ESTADO e, int l, int c){
     l -= 1;
     c += 1;
-    if(l == 0 || c == 7|| e.grelha[l-1][c-1] == e.peca || e.grelha[l-1][c-1]==VAZIA) return 0;
+    if(l == 0 || c == 7 || e.grelha[l-1][c-1] == e.peca || e.grelha[l-1][c-1] == VAZIA) return 0;
     else{
         l -= 1; c += 1;
         while(l != 0 || c <= 8 ){
-            if(e.grelha[l-1][c-1]==VAZIA) return 0;
-            else if(e.grelha[l-1][c-1]==e.peca) return 1;
-            else {
+            if(e.grelha[l-1][c-1] == VAZIA) return 0;
+            else if(e.grelha[l-1][c-1] == e.peca) return 1;
+            else{
                 l--;
                 c++;
             }
@@ -89,11 +89,11 @@ int jog_valida_cima_dir(ESTADO e, int l, int c){
 int jog_valida_cima_esq(ESTADO e, int l, int c){
     l -= 1;
     c -= 1;
-    if(l==0 || c == 0|| e.grelha[l-1][c-1] == e.peca || e.grelha[l-1][c-1]==VAZIA) return 0;
-    else {
+    if(l == 0 || c == 0 || e.grelha[l-1][c-1] == e.peca || e.grelha[l-1][c-1] == VAZIA) return 0;
+    else{
         l -= 1;
         c -= 1;
-        while (l != 0 || c != 0) {
+        while (l != 0 || c != 0){
             if (e.grelha[l - 1][c - 1] == VAZIA) return 0;
             else if (e.grelha[l - 1][c - 1] == e.peca) return 1;
             else {
@@ -109,11 +109,11 @@ int jog_valida_cima_esq(ESTADO e, int l, int c){
 int jog_valida_baixo_dir(ESTADO e, int l, int c){
     l += 1;
     c += 1;
-    if(l== 7 || c == 7|| e.grelha[l-1][c-1] == e.peca || e.grelha[l-1][c-1]==VAZIA) return 0;
+    if(l== 7 || c == 7|| e.grelha[l-1][c-1] == e.peca || e.grelha[l-1][c-1] == VAZIA) return 0;
     else{
         l += 1;
         c += 1;
-        while (l <= 8 || c <= 8) {
+        while (l <= 8 || c <= 8){
             if (e.grelha[l - 1][c - 1] == VAZIA) return 0;
             else if (e.grelha[l - 1][c - 1] == e.peca) return 1;
             else {
@@ -129,14 +129,14 @@ int jog_valida_baixo_dir(ESTADO e, int l, int c){
 int jog_valida_baixo_esq(ESTADO e, int l, int c){
     l += 1;
     c -= 1;
-    if(l == 7 || c == 0 || e.grelha[l-1][c-1] == e.peca || e.grelha[l-1][c-1]==VAZIA) return 0;
+    if(l == 7 || c == 0 || e.grelha[l-1][c-1] == e.peca || e.grelha[l-1][c-1] == VAZIA) return 0;
     else{
         l +=1;
         c -= 1;
-        while(l <= 8 || c != 0 ) {
+        while(l <= 8 || c != 0 ){
             if (e.grelha[l - 1][c - 1] == VAZIA) return 0;
             else if (e.grelha[l - 1][c - 1] == e.peca) return 1;
-            else {
+            else{
                 l++;
                 c--;
             }
@@ -146,7 +146,7 @@ int jog_valida_baixo_esq(ESTADO e, int l, int c){
 }
 
 
-int pode_jogar(ESTADO e , int l, int c){
+int pode_jogar(ESTADO e , int l , int c){
     if (jog_valida_cima(e,l,c)) return 1;
     if (jog_valida_baixo(e,l,c)) return 1;
     if (jog_valida_direita(e,l,c)) return 1;
@@ -165,7 +165,7 @@ ESTADO substitui(ESTADO e, int l, int c){
     if(jog_valida_cima(e,l,c)) {
         lt = l-2;
         ct = c-1;
-        if (e.peca == VALOR_X) {
+        if (e.peca == VALOR_X){
             while (e.grelha[lt][ct] ==VALOR_O) {
                 e.grelha[lt][ct] = VALOR_X;
                 lt--;

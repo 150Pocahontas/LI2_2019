@@ -5,10 +5,11 @@
 #include "estado.h"
 #include "auxiliares.h"
 #include "comandos.h"
+#include "stack.h"
+#include "bot.h"
 #define MAXBUFFER 1024
 
-
-ESTADO interpretar(ESTADO e, char *linha) {
+ESTADO interpretar(ESTADO e, char *linha){
 
     int n,nivel;
 
@@ -31,7 +32,7 @@ ESTADO interpretar(ESTADO e, char *linha) {
             break;
         case 'L':
             sscanf(linha,"%s",cmd);
-            e=cmd_ler_fich(e);
+            e = cmd_ler_fich(e);
             printf("\n");
             printa(e);
             printf("\n");
@@ -75,7 +76,7 @@ ESTADO interpretar(ESTADO e, char *linha) {
         case 'A':
             sscanf(linha,"%s %s %d",cmd,peca,&nivel); //se peça=X joga primeiro
             modo = 'A';
-            if (e.peca == VALOR_X) p= 'O';
+            if (e.peca == VALOR_X) p = 'O';
             else p = 'X';
             printf("%c %c", modo,p);
             e=cmd_novo_jogo(e,toupper(peca[0]));
@@ -92,25 +93,19 @@ ESTADO interpretar(ESTADO e, char *linha) {
 }
 
 
-void interpretador(ESTADO e){
-
+void interpretador(ESTADO e,STACK s){
     char linha[MAXBUFFER];
-
     printf("Reversi > ");
-
-
     while(fgets(linha,MAXBUFFER,stdin)){
-
         e = interpretar(e,linha);
-
         printf("Reversi > ");
     }
-
 }
 
 
 int main() {
     ESTADO e = {0};
+    STACK s;
     printf("Para começar a jogar em modo manual executar o comando: N <Peça> (X ou O) \n");
     printf("Para começar a jogar em modo automatico executar o comando: A <Peça> <nivel> (1,2 ou 3) \n");
     interpretador(e);
