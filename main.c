@@ -12,7 +12,7 @@
 ESTADO interpretar(ESTADO e, char *linha,STACK *s){
 
     int n,nivel;
-
+    char ficheiro[MAXBUFFER];
     char cmd[MAXBUFFER];
     char peca[MAXBUFFER];
     char l,c, modo,p;
@@ -30,13 +30,17 @@ ESTADO interpretar(ESTADO e, char *linha,STACK *s){
             printf("\n");
             break;
         case 'L':
-            e = cmd_ler_fich(e,s);
+            sscanf(linha,"%s %s",cmd,ficheiro);
+            e = cmd_ler_fich(e,ficheiro,s);
+            iniciastack(s);
+            push(e,s);
             printf("\n");
             printa(e);
             printf("\n");
             break;
         case 'E':
-            cmd_escrever_fich(e);
+            sscanf(linha,"%s %s",cmd,ficheiro);
+            cmd_escrever_fich(e,ficheiro);
             break;
         case 'J':
             sscanf(linha,"%c %c %c",cmd,&l,&c);
@@ -94,7 +98,7 @@ void interpretador(ESTADO e,STACK *s){
     char linha[MAXBUFFER];
     printf("Reversi > ");
     while(fgets(linha,MAXBUFFER,stdin)){
-        e = interpretar(e,linha,s);
+        e = interpretar(e,linha,&s);
         printf("Reversi > ");
     }
 }
@@ -105,7 +109,7 @@ int main() {
     STACK *s;
     printf("Para começar a jogar em modo manual executar o comando: N <Peça> (X ou O) \n");
     printf("Para começar a jogar em modo automatico executar o comando: A <Peça> <nivel> (1,2 ou 3) \n");
-    interpretador(e,&s);
+    interpretador(e,s);
     return 0;
 }
 

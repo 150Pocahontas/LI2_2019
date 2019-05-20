@@ -1,6 +1,3 @@
-//
-// Created by pja on 28/02/2019.
-//
 #include <stdio.h>
 #include "estado.h"
 

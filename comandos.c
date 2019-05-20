@@ -1,15 +1,12 @@
-//
-// Created by patricia on 17-04-2019.
-//
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
 #include "estado.h"
-#define MAXBUFFER 1024
 #include "auxiliares.h"
 #include "comandos.h"
 #include "stack.h"
+#define MAXBUFFER 1024
 
 
 ESTADO cmd_novo_jogo(ESTADO e, char jog,STACK *s ){
@@ -28,8 +25,7 @@ ESTADO cmd_novo_jogo(ESTADO e, char jog,STACK *s ){
 
     if(jog == 'X'){
         e.peca = VALOR_X;
-    }
-    else if(jog == 'O') {
+    }else if(jog == 'O') {
         e.peca = VALOR_O;
     }else e.peca = VAZIA;
     iniciastack(s);
@@ -39,31 +35,24 @@ ESTADO cmd_novo_jogo(ESTADO e, char jog,STACK *s ){
 }
 
 
-ESTADO cmd_ler_fich(ESTADO e,STACK *s){
-
-    FILE *tabuleiro;
+ESTADO cmd_ler_fich(ESTADO e,char tabuleiro[],STACK *s){
     char modo, p;
     char linha[MAXBUFFER];
-
-    tabuleiro = fopen("CLionProjects/Projeto_LI2/tabuleiro.txt","r");
-
-    if(tabuleiro == NULL){
+    FILE *ficheiro;
+    ficheiro = fopen(tabuleiro,"r");
+    if(ficheiro == NULL){
         printf("Ficheiro não existe\n");
         return e;
     }
-
-    fscanf(tabuleiro,"%c %c", &modo, &p);
+    fscanf(ficheiro,"%c %c", &modo, &p);
     if (modo == 'M') e.modo = 0;
     else e.modo = 1;
-
     if(p == 'X') e.peca = VALOR_X;
     if(p == 'O') e.peca = VALOR_O;
     if(p == '-') e.peca = VAZIA;
-
-    fseek(tabuleiro,1,SEEK_CUR);
-
+    fseek(ficheiro,1,SEEK_CUR);
     for(int i=0; i<8;i++){
-        fgets(linha,MAXBUFFER,tabuleiro);
+        fgets(linha,MAXBUFFER,ficheiro);
         printf("%s",linha);
         for(int j=0, c=0; linha[j]!= '\n' && c<8 ;j++){
             if(linha[j]=='X') {
@@ -85,38 +74,34 @@ ESTADO cmd_ler_fich(ESTADO e,STACK *s){
             }
         }
     }
-    fclose(tabuleiro);
+    fclose(ficheiro);
     iniciastack(s);
     push(e,s);
     return e;
 }
 
 
-void cmd_escrever_fich(ESTADO e){
-
-    FILE *tabuleiro;
+void cmd_escrever_fich(ESTADO e,char tabuleiro[]){
     char modo, p;
-
-    tabuleiro = fopen("CLionProjects/Projeto_LI2/tabuleiro.txt","r");
-
+    FILE *ficheiro;
+    ficheiro = fopen(tabuleiro,"w");
     if (e.modo == 0) modo = 'M';
     else modo = 'A';
-
     if(e.peca == VALOR_X) p = 'X';
     if (e.peca == VALOR_O) p = 'O';
     if(e.peca==VAZIA) p = '-';
-    fprintf(tabuleiro,"%c %c", modo,p);
-    fprintf(tabuleiro,"\n");
+    fprintf(ficheiro,"%c %c", modo,p);
+    fprintf(ficheiro,"\n");
     for(int i=0; i<8;i++){
         for(int j=0; j<8;j++){
-            if(e.grelha[i][j]==VALOR_X) fprintf(tabuleiro,"X ");
-            else if(e.grelha[i][j]==VALOR_O) fprintf(tabuleiro,"O ");
-            else if(e.grelha[i][j]==VAZIA) fprintf(tabuleiro,"- ");
-            else if (pode_jogar(e,i,j)) fprintf(tabuleiro,".");
+            if(e.grelha[i][j]==VALOR_X) fprintf(ficheiro,"X ");
+            else if(e.grelha[i][j]==VALOR_O) fprintf(ficheiro,"O ");
+            else if(e.grelha[i][j]==VAZIA) fprintf(ficheiro,"- ");
+            else if (pode_jogar(e,i,j)) fprintf(ficheiro,".");
         }
-        fprintf(tabuleiro,"\n");
+        fprintf(ficheiro,"\n");
     }
-    fclose(tabuleiro);
+    fclose(ficheiro);
 }
 
 
@@ -127,7 +112,7 @@ ESTADO cmd_jogar(ESTADO e, char l, char c,STACK *s){
     if(e.peca != VAZIA){
         if (pode_jogar(e,li,ci) && e.grelha[li-1][ci-1]==VAZIA) {
             e.grelha[li - 1][ci - 1] = e.peca;
-            e = substitui(e,li,ci);
+            e = pode_substituir(e,li,ci);
             if (e.peca == VALOR_X) e.peca = VALOR_O;
             else e.peca = VALOR_X;
             jogadas(e);
@@ -138,7 +123,7 @@ ESTADO cmd_jogar(ESTADO e, char l, char c,STACK *s){
 }
 
 
-void cmd_pos_valida(ESTADO e) {
+void cmd_pos_valida(ESTADO e){
     int i,j;
     printf("  1 2 3 4 5 6 7 8\n");
     for (i = 0;i<8;i++) {
@@ -156,7 +141,7 @@ void cmd_pos_valida(ESTADO e) {
 }
 
 
-void cmd_sugestao(ESTADO e) {
+void cmd_sugestao(ESTADO e){
     int i, j;
     int ci = 3, cj = 3;
     for (i = 0; i < 8; i++) {

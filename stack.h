@@ -1,7 +1,3 @@
-//
-// Created by patricia on 10-04-2019.
-//
-
 #ifndef TESTES_STACK_H
 #define TESTES_STACK_H
 #include "estado.h"

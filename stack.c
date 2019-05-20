@@ -1,7 +1,3 @@
-//
-// Created by patricia on 10-04-2019.
-//
-
 #include "stack.h"
 #include <stdlib.h>
 #include <stdio.h>
@@ -10,9 +6,12 @@
 void iniciastack(STACK *stack){
     *stack = NULL;
 }
+
+
 int vazia(STACK *stack){
     return (*stack == NULL || (*stack) -> anterior == NULL);
 }
+
 
 void push(ESTADO e, STACK *stack){
     STACK novastack = (STACK) malloc(sizeof(struct stack));
@@ -20,6 +19,7 @@ void push(ESTADO e, STACK *stack){
     novastack -> anterior = *stack;
     *stack = novastack;
 }
+
 
 ESTADO pop(ESTADO e, STACK *stack){
     STACK aux = *stack;
